@@ -1,0 +1,43 @@
+<form method="post" action="contact.php" id="contact-form" class="contact-form">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                <label class="hide" for="name">Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Full Name" />
+            </div>
+            <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                <label class="hide" for="email">Email</label>
+                <input type="text" class="form-control" name="email" placeholder="Email" />
+            </div>
+        </div>
+        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+        <input type="hidden" name="action" value="validate_captcha">
+        <div class="row">
+            <div class="col-12">
+                <label class="hide" for="message">Message</label>
+                <textarea type="text" class="form-control" name="message" rows="3" placeholder="Add a brief message..."></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-error hide">
+        <h2><i class="far fa-exclamation-square"></i> A Minor Setback</h2>
+        <div id="contact-error"></div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+            <input type="submit" class="button button-lg button-hover-shadow button-hover-float" id="contact-send" value="Send Message">
+        </div>
+    </div>
+</form>
+<div class="form-success hide">
+    <h2><i class="far fa-comment-alt-check"></i> Success!</h2>
+    <div id="contact-response"></div>
+</div>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('SITE_KEY_GOES_HERE', {action: 'validate_captcha'}).then(function(token) {
+            document.getElementById('g-recaptcha-response').value = token;
+        });
+    });
+</script>
+<script src="contact.js" type="text/javascript"></script>
